@@ -1,0 +1,13 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (coal.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Assembling Asm.asm...
+Asm.asm(46): error A2008: syntax error : ADDCUSTOMER
+Asm.asm(47): error A2008: syntax error : array
+Asm.asm(48): error A2008: syntax error : -
+Asm.asm(49): error A2008: syntax error : -
+Asm.asm(50): error A2008: syntax error : -
+Asm.asm(96): error A2008: syntax error : ListAll
+Asm.asm(97): error A2008: syntax error : It
+Asm.asm(98): error A2008: syntax error : -
+Asm.asm(99): error A2008: syntax error : -
+Asm.asm(100): error A2008: syntax error : -
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\BuildCustomizations\masm.targets(70,5): error MSB3721: The command "ml.exe /c /nologo /Zi /Fo"Debug\Asm.obj" /Fl".lst" /I "C:\Program Files (x86)\Irvine\Irvine\irvine" /W3 /errorReport:prompt  /TaAsm.asm" exited with code 1.
