@@ -19,6 +19,12 @@
     <Text Include="TEST.txt">
       <Filter>portion1</Filter>
     </Text>
+    <Text Include="Part1.txt">
+      <Filter>portion1</Filter>
+    </Text>
+    <Text Include="part2.txt">
+      <Filter>portion1</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="portion1">

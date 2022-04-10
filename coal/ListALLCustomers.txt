@@ -1,0 +1,21 @@
+listAll PROC
+	count2 = 0
+	push ecx
+	push edx
+	mov ecx , 2
+	label:
+		mov ecx , sizeof customerNames
+		mov edx,offset [customerNames+count2]
+		call writestring
+		call crlf
+		mov ecx , sizeof customerCnic
+		mov edx,offset [customerCnic+count2]
+		call writestring
+		call crlf
+
+		count2 = count2 + 20 
+		loop label
+	pop edx
+	pop ecx
+	ret
+listAll ENDP

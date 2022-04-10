@@ -28,6 +28,8 @@
     <Text Include="AddCustomer.txt" />
     <Text Include="code.txt" />
     <Text Include="ListALLCustomers.txt" />
+    <Text Include="Part1.txt" />
+    <Text Include="part2.txt" />
     <Text Include="TEST.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
