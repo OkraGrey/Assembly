@@ -422,7 +422,7 @@ addCustomer ENDP
 ;-ListAll works as a print all data in our proggram        -
 ;-It displays name at top and below cnic is mentioned	   -
 ;-edx , ecx ,eax are used in the entire procedure		   - 						
-;-														   -
+;-Test													   -
 ;-----------------------------------------------------------
 listAll PROC
 	
