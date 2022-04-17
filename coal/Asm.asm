@@ -4,7 +4,7 @@ INCLUDE Irvine32.inc
 
 .data 
 ;-------------------------------------------------------------------------
-
+;Hasnain Sohail trying git hub
 t BYTE "AIRLINE TICKET MANAGEMENT SYSTEM",0
 explain BYTE "1-Customer details will be fetched 2 - Schedule will be displayed  3 - Fair generation 4 - Discount ",0
 portion1 BYTE "CUSTOMER DETAILS"
