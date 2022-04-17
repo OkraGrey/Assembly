@@ -262,6 +262,15 @@ jne wrng
 isbl:
 	mov edx ,offset isb
 	call writestring
+	call readint
+		cmp eax , 1
+		je  isbl1
+		cmp eax , 2
+		je  isbl1
+		cmp eax , 3
+		je  isbl1
+		jne wrng
+		
 	mov fair , 30000
 	jmp done 
 	
@@ -332,7 +341,8 @@ wrng:
 	mov edx , offset invalid
 	call writestring
 	jmp done
-	
+isbl1:
+	jmp done
 done : 
 	call writeint
 ;if else finish
@@ -422,7 +432,7 @@ addCustomer ENDP
 ;-ListAll works as a print all data in our proggram        -
 ;-It displays name at top and below cnic is mentioned	   -
 ;-edx , ecx ,eax are used in the entire procedure		   - 						
-;-Test													   -
+;-														   -
 ;-----------------------------------------------------------
 listAll PROC
 	

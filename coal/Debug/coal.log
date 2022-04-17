@@ -1,2 +1,2 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (coal.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  coal.vcxproj -> D:\Semesters\Semester 4\COAL Lab\Project\coal\Debug\Project.exe
+﻿  Assembling asm.asm...
+  Coal.vcxproj -> D:\Semesters\Semester 4\COAL Lab\asli wala\Assembly\Debug\Coal.exe
