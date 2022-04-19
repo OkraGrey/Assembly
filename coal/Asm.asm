@@ -193,6 +193,7 @@ BYTE "  FAIR : Rs.120,000 (BUISNESS CLASS)",0
 ;------------------------------
 ;10------------------------------
 sana BYTE "You have chosed Sana , Yemen",10
+
 BYTE "  SCHEDULE",10
 BYTE "  1- THURSDAY : ",10
 BYTE "	PIA PK203",10
@@ -214,7 +215,7 @@ BYTE "  TIME : 11:00 AM",10
 BYTE "  FAIR : Rs.120,000 (BUISNESS CLASS)",10
 ;------------------------------
 invalid BYTE "You entered an invalid input ",0 
-
+optionss BYTE "SELECT ANY OF THE FOLLOWING: ",0
 
 fair dword 0
 .code
@@ -226,8 +227,8 @@ main proc
 ;mov ecx , 5
 ;a:
 ;count values
-;call addCustomer
-
+call addCustomer
+call crlf
 ;loop a
 ;call listAll
 call displayDestinations
@@ -262,13 +263,17 @@ jne wrng
 isbl:
 	mov edx ,offset isb
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
 	call readint
 		cmp eax , 1
 		je  isbl1
 		cmp eax , 2
-		je  isbl1
+		je  isbl2
 		cmp eax , 3
-		je  isbl1
+		je  isbl3
 		jne wrng
 		
 	mov fair , 30000
@@ -278,6 +283,17 @@ isbl:
 heath:
 	mov edx ,offset heathrow
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  heath1
+		cmp eax , 2
+		je  heath2
+		jne wrng
+		
 	mov fair , 130000
 	jmp done 
 	
@@ -285,6 +301,16 @@ heath:
 ny:
 	mov edx ,offset newyork
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  ny1
+		cmp eax , 2
+		je  ny2
+		jne wrng
 	mov fair , 180000
 	jmp done 
 	
@@ -292,6 +318,16 @@ ny:
 mos:
 	mov edx ,offset moscow
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  mos1
+		cmp eax , 2
+		je  mos2
+		jne wrng
 	mov fair , 190000
 	jmp done
 	
@@ -299,6 +335,16 @@ mos:
 mex:
 	mov edx ,offset mexico
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  mex1
+		cmp eax , 2
+		je  mex2
+		jne wrng
 	mov fair , 270000
 	jmp done 
 	
@@ -306,6 +352,16 @@ mex:
 teh:
 	mov edx ,offset tehran
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  teh1
+		cmp eax , 2
+		je  teh2
+		jne wrng
 	mov fair , 120000
 	jmp done 
 	
@@ -313,6 +369,16 @@ teh:
 bchina:
 	mov edx ,offset bej
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  bchina1
+		cmp eax , 2
+		je  bchina2
+		jne wrng
 	mov fair , 110000
 	jmp done 
 	
@@ -320,6 +386,14 @@ bchina:
 osl:
 	mov edx ,offset oslo
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  osl1
+		jne wrng
 	mov fair , 290000
 	jmp done 
 	
@@ -327,6 +401,18 @@ osl:
 kab:
 	mov edx ,offset kabul
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  kabul1
+		cmp eax , 2
+		je  kabul2
+		cmp eax , 3
+		je  kabul3
+		jne wrng
 	mov fair , 120000
 	jmp done 
 	
@@ -334,6 +420,16 @@ kab:
 san:
 	mov edx ,offset sana
 	call writestring
+	call crlf
+	mov edx ,offset optionss
+	call writestring
+
+	call readint
+	cmp eax , 1
+		je  sana1
+		cmp eax , 2
+		je  sana2
+		jne wrng
 	mov fair , 210000
 	jmp done 
 
@@ -343,6 +439,47 @@ wrng:
 	jmp done
 isbl1:
 	jmp done
+isbl2:
+	jmp done
+isbl3:
+	jmp done
+heath1:
+	jmp done
+heath2:
+	jmp done
+ny1:
+	jmp done
+ny2:
+	jmp done
+mos1:
+	jmp done
+mos2:
+	jmp done
+mex1:
+	jmp done
+mex2:
+	jmp done
+teh1:
+	jmp done
+teh2:
+	jmp done
+bchina1:
+	jmp done
+bchina2:
+	jmp done
+osl1:
+	jmp done
+kabul1:
+	jmp done
+kabul2:
+	jmp done
+kabul3:
+	jmp done
+sana1:
+	jmp done
+sana2:
+	jmp done
+	
 done : 
 	call writeint
 ;if else finish
