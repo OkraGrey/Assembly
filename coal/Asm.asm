@@ -1,5 +1,5 @@
 INCLUDE Irvine32.inc
-
+INCLUDE MACROS.INC
 .stack 4096
 
 .data 
@@ -71,7 +71,7 @@ BYTE "	AIRBUS A380",10
 BYTE "  DEPARTURE TIME : 3:30 PM ",10
 BYTE "  FAIR : Rs.260,000 (BUISNESS CLASS)",10
 BYTE "---------------------------",10
-BYTE "  2- WEDNESDAY : ",10
+BYTE "  2- THURSDAY : ",10
 BYTE "  EMIRATES 176E4",10
 BYTE "  AIRBUS A380",10
 BYTE "  TIME : 4:30 AM",10
@@ -438,48 +438,161 @@ wrng:
 	call writestring
 	jmp done
 isbl1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- MONDAY : "
 	jmp done
 isbl2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- WEDNESDAY : "
 	jmp done
 isbl3:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "3- SUNDAY : "
 	jmp done
 heath1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- WEDNESDAY : "
 	jmp done
 heath2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- THURSDAY : "
 	jmp done
 ny1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- TUESDAY : "
 	jmp done
 ny2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- FRIDAY : "
 	jmp done
 mos1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- WEDNESDAY : "
 	jmp done
 mos2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite " 2- SATURDAY : "
 	jmp done
 mex1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- MONDAY : "
 	jmp done
 mex2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- THURSDAY : "
 	jmp done
 teh1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- WEDNESDAY : "
 	jmp done
 teh2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- SATURDAY : "
 	jmp done
 bchina1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- TUESDAY : "
 	jmp done
 bchina2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- THURSDAY : "
 	jmp done
 osl1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- SUNDAY : "
 	jmp done
 kabul1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- TUESDAY : "
 	jmp done
 kabul2:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "2- WEDNESDAY : "
 	jmp done
 kabul3:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "3- SUNDAY : "
 	jmp done
 sana1:
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite "1- THURSDAY : "
 	jmp done
-sana2:
+sana2:	
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite " 2- SATURDAY :  "
+	jmp done
+sana3:	
+	call crlf 
+	call crlf
+	mwrite "You have chosed"
+	call crlf
+	mwrite " 3- SUNDAY :  "
 	jmp done
 	
+
 done : 
 	call writeint
 ;if else finish
