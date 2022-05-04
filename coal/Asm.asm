@@ -18,6 +18,7 @@ customerCnic BYTE 400 dup(?)
 ptrName DWORD customerNames
 ptrCnic DWORD customerCnic
 abdullah dword 0
+listingT dword 0
 temp dword 0
 count = 0 ; used in addCustomer
 x dword 0
@@ -27,7 +28,7 @@ y dword 0
 count2 = 0
 destinations BYTE "SELECT ANY OF THE FOLLOWING DESTINATIONS FOR YOUR TRAVEL : ",10
 BYTE "		1-Islamabad",10
-BYTE "		2-Heathrow",10
+BYTE "		2-Heathrow",10 
 BYTE "		3-NewYork",10
 BYTE "		4-Moscow",10
 BYTE "		5-Mexico",10
@@ -218,22 +219,60 @@ called Dword 0
 
 .code
 ;-------------------------------------------------------------------------
-main proc
+main proc	
 
-.WHILE called <20
-
-	
-
-	;call crlf
-	;mov ecx , 5
-	;a:
-	;count values
-	;loop a
-	;call listAll
-	
+mov ecx , 3
+l1:
 	call addCustomer
 	call crlf
-	call displayDestinations
+	call takeInput
+	call crlf
+	call crlf
+	call crlf
+	call crlf
+	
+	
+	
+	loop l1
+	
+	call crlf
+	call crlf
+	call crlf
+	call crlf
+	call crlf
+	call crlf
+	
+	call listAll
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exit
+main endp
+;-------------ticcket--------------
+takeInput Proc
+	push eax
+	push ebx
+	push ecx
+	push edx
+	push esi
+	push ebp
+	push esp
+		
+
+start1 :		call displayDestinations
 	call readint
 	mov inputDest , eax
 	call crlf
@@ -259,7 +298,7 @@ main proc
 	je kab
 	cmp eax ,10
 	je san
-	jne wrng
+	jne start1
 
 	;1-
 	isbl:
@@ -277,7 +316,7 @@ main proc
 		call writestring
 		call crlf
 
-		mov edx ,offset optionss
+startISB:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -287,7 +326,7 @@ main proc
 			je  isbl2
 			cmp eax , 3
 			je  isbl3
-			jne wrng
+			jne startISB
 		
 		mov fair , 30000
 		jmp done 
@@ -304,7 +343,7 @@ main proc
 		mov edx ,offset heathrow2
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startHeath:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -312,7 +351,7 @@ main proc
 			je  heath1
 			cmp eax , 2
 			je  heath2
-			jne wrng
+			jne startHeath
 		
 		mov fair , 130000
 		jmp done 
@@ -329,7 +368,7 @@ main proc
 		mov edx ,offset newyork2
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startNY:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -337,7 +376,7 @@ main proc
 			je  ny1
 			cmp eax , 2
 			je  ny2
-			jne wrng
+			jne startNY
 		mov fair , 180000
 		jmp done 
 	
@@ -353,7 +392,7 @@ main proc
 		mov edx ,offset moscow2
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startMOS:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -361,7 +400,7 @@ main proc
 			je  mos1
 			cmp eax , 2
 			je  mos2
-			jne wrng
+			jne startMOS
 		mov fair , 190000
 		jmp done
 	
@@ -377,7 +416,7 @@ main proc
 		mov edx ,offset mexico2
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startMEX:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -385,7 +424,7 @@ main proc
 			je  mex1
 			cmp eax , 2
 			je  mex2
-			jne wrng
+			jne startMEX
 		mov fair , 270000
 		jmp done 
 	
@@ -401,7 +440,7 @@ main proc
 		mov edx ,offset tehran2
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startTeh:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -409,7 +448,7 @@ main proc
 			je  teh1
 			cmp eax , 2
 			je  teh2
-			jne wrng
+			jne startTeh
 		mov fair , 120000
 		jmp done 
 	
@@ -425,7 +464,7 @@ main proc
 		mov edx ,offset bejing2
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startCHINA:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -433,7 +472,7 @@ main proc
 			je  bchina1
 			cmp eax , 2
 			je  bchina2
-			jne wrng
+			jne startCHINA
 		mov fair , 110000
 		jmp done 
 	
@@ -446,13 +485,13 @@ main proc
 		mov edx ,offset oslo1
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startOSLO:		mov edx ,offset optionss
 		call writestring
 
 		call readint
 		cmp eax , 1
 			je  osl1
-			jne wrng
+			jne startOSLO
 		mov fair , 290000
 		jmp done 
 	
@@ -471,7 +510,7 @@ main proc
 		mov edx ,offset kabul3
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startKabul:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -481,7 +520,7 @@ main proc
 			je  kab2
 			cmp eax , 3
 			je  kab3
-			jne wrng
+			jne startKabul
 		mov fair , 120000
 		jmp done 
 	
@@ -500,7 +539,7 @@ main proc
 		mov edx ,offset sana3
 		call writestring
 		call crlf
-		mov edx ,offset optionss
+startSANA:		mov edx ,offset optionss
 		call writestring
 
 		call readint
@@ -511,7 +550,7 @@ main proc
 			cmp eax , 3
 			je  san3
 
-			jne wrng
+			jne startSANA
 		mov fair , 210000
 		jmp done 
 
@@ -720,19 +759,18 @@ main proc
 		call copy
 		jmp done
 	
-
 	done : 
-		call crlf
-		mwrite "Iteration done"
-		call crlf
-.ENDW
-	mwrite "All Tickets have been sold"
+		
 
-	;----------------------------------------------------------------
-
-exit
-main endp
-
+	pop esp
+	pop ebp
+	pop esi
+	pop edx
+	pop ecx
+	pop ebx
+	pop eax
+		ret
+takeInput endP
 
 ;---------------------------------------------------------
 
@@ -844,6 +882,14 @@ listAll PROC
 		call crlf
 		add abdullah , 20
 		
+		
+		mov edx , offset tickets
+		add edx , ListingT
+		
+		call writestring
+		add ListingT ,201
+		call crlf
+		
 		mov ecx ,temp
 		loop l
 	pop eax
@@ -869,7 +915,7 @@ copy proc
             ;--------------------------
             ;initializing ecx
             call strLength
-            call writeint
+            ;call writeint
             mov ecx ,eax
             mov eax ,0
             ;--------------------------
@@ -880,7 +926,7 @@ copy proc
 			inc edx
 			inc esi
 			loop l1
-		inc recIndex
+ 		inc recIndex
 		inc called
        pop ecx
        pop eax
