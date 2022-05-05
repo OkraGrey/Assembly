@@ -4,123 +4,32 @@ INCLUDE MACROS.INC
 .data
 
 ddata dword ?
+filename Byte "names.txt",0
+filecnic Byte "cnic.txt",0
+fileticket Byte "tickets.txt",0
 
+customerNames BYTE "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 400 dup(?)
+customerCnic BYTE "nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", 400 dup(0)
+tickets BYTE "ccccccccccccccccccccccccccccccccccccccccccccc", 5000 DUP(0)
 
-isb BYTE "You have chosed Islamabad ",10
-BYTE "  SCHEDULE",10
-BYTE "  1- MONDAY : ",10
-BYTE "	PIA PK747",10
-BYTE "	BOEING 747",10
-BYTE "  DEPARTURE TIME : 4:30 PM ",10
-BYTE "  FAIR : Rs.30,000 (BUISNESS CLASS)",10
-BYTE "---------------------------",0
-ticketNumber dword 0
-mult Byte "TCIKET TEST",10,"Newn Line",10,"another",0
-
-xyz dword ?  
-
-tickets BYTE 4000 DUP(?)
-source BYTE "hello",0
-target BYTE 1000 DUP (?)
-
-
+filehandle DWORD ?
 
 .code
 main Proc
-       
 
-       mov edx , offset isb
-       call strlength
-       mov ddata , eax
-       call writedec
-       call crlf
-       call crlf
-       call crlf
-       call crlf
-       call crlf
-
-
-
-
-      mov ebx ,0 
-      mov esi , 0
-      mov ecx , ddata
-      mov xyz , offset isb
-      l1:
-        mov eax, [edx]
-        mov target[esi], al
-        inc edx
-        inc esi
-        loop l1
-
-
-        mov ebx ,0 
-      mov esi , 100
-      mov ecx , lengthof isb
-
-      l3:
-        mov al, isb[ebx]
-        mov target[esi], al
-        inc ebx
-        inc esi
-;        loop l3
-
-
-
-mov ecx , lengthof target
-mov esi ,0
-    l2:
-        mov al , target[esi]
-        call writechar
-        
-        inc esi
-        loop l2
-
-
-
+	INVOKE CreateFile ,ADDR filename,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
+	
+	INVOKE WriteFile ,eax,ADDR customerNames,sizeof customerNames,NULL,NULL   
+	
+	INVOKE CreateFile ,ADDR filecnic,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
+	INVOKE WriteFile ,eax,ADDR customerCnic,sizeof customerCnic,NULL,NULL   
+	
+	INVOKE CreateFile ,ADDR fileticket,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
+	INVOKE WriteFile ,eax,ADDR tickets,sizeof tickets,NULL,NULL   
+	
 
 exit 
 main endp
-
-getTicketData Proc
-    push esi 
-    push eax
-    ;edx contains the offset to be copied
-    push ecx
-    push ebx
-    
-       ;mov edx , offset isb already contains the desired offset
-       call strlength
-       mov ecx , eax
-        
-        mov esi ,0 
-        mov eax,ticketNumber
-        mov ebx , 200
-        mul ebx
-        add esi , ebx
-        mov eax,esi
-        mwrite "value of esi : "
-        call writeint
-
-        ;mov ebx , eax ;;;;Holds the starting index to save for a separate ticket (ticketnumber *200)
-        ;mov xyz , offset isb    
-        lx:
-            mov eax ,[edx] ;how to pass string vvaribale as argument? 
-
-            mov tickets[esi] ,al
-            inc edx
-            inc esi
-
-            loop lx
-
-         
-
-       
-
-
-
-
-getTicketData endP
 
 
 

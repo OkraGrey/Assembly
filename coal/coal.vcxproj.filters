@@ -28,4 +28,15 @@
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="names.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="cnic.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="tickets.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

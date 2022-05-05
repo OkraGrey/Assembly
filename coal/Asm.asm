@@ -13,8 +13,8 @@ portion1 BYTE "CUSTOMER DETAILS"
 ;will contain cnic 
 stringName BYTE "Enter Name : ",0
 stringCnic BYTE "Enter cnic : ",0
-customerNames BYTE 400 dup(?)
-customerCnic BYTE 400 dup(?)
+customerNames BYTE 400 dup(0)
+customerCnic BYTE 400 dup(0)
 ptrName DWORD customerNames
 ptrCnic DWORD customerCnic
 abdullah dword 0
@@ -202,9 +202,18 @@ fair dword 0
 
 ;---------------------------------------FOR COPY PROCEDURE
 recIndex dword 0
-tickets BYTE 5000 DUP(?)
+tickets BYTE 5000 DUP(0)
 
 called Dword 0
+;---------------------------------------FOR FILEHANDLING
+
+
+
+filename Byte "names.txt",0,0
+filecnic Byte "cnic.txt",0,0
+fileticket Byte "tickets.txt",0,0
+
+filehandle dword ?
 
 
 
@@ -220,8 +229,8 @@ called Dword 0
 .code
 ;-------------------------------------------------------------------------
 main proc	
-
-mov ecx , 3
+call loadData
+mov ecx , 1
 l1:
 	call addCustomer
 	call crlf
@@ -246,8 +255,8 @@ l1:
 
 
 
-
-
+	mov eax ,0
+	call saveData
 
 
 
@@ -933,4 +942,92 @@ copy proc
        pop esi
                     ret
 copy endp
+
+loadData PROC
+		
+		push eax
+
+		INVOKE CreateFile ,offset filename,GENERIC_READ,DO_NOT_SHARE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0
+		mov filehandle , eax
+
+		INVOKE ReadFile ,eax,ADDR customerNames,sizeof customerNames,NULL,NULL
+		
+		mov edx , offset customerNames
+		call writestring
+		mov eax , filehandle
+		;Invoke CloseHandle,eax
+		; mov  eax,fileHandle
+		call CloseFile
+
+		call crlf
+
+		INVOKE CreateFile ,offset filecnic,GENERIC_READ,DO_NOT_SHARE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0
+		mov filehandle , eax
+
+		INVOKE ReadFile ,eax,ADDR customercnic,sizeof customercnic,NULL,NULL
+		mov edx , offset customercnic
+		call writestring
+		mov eax , filehandle
+		;mov eax , filehandle
+		;Invoke CloseHandle,eax
+		 mov  eax,fileHandle
+		call CloseFile
+
+		call crlf
+		call crlf
+
+		INVOKE CreateFile ,offset fileticket,GENERIC_READ,DO_NOT_SHARE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0
+		mov filehandle , eax
+
+		INVOKE ReadFile ,eax,ADDR tickets,sizeof tickets,NULL,NULL
+		mov edx , offset tickets
+		call writestring
+		;mov eax , filehandle
+		;Invoke CloseHandle,eax
+		 mov  eax,fileHandle
+		call CloseFile
+
+		pop eax
+	ret
+loadData ENDP
+
+
+saveData PROC
+	push eax
+	;mov edx ,offset filename
+	;call CreateOutputFile
+	;call writeint
+	;call crlf
+	
+
+	INVOKE CreateFile ,ADDR filename,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
+	call writeint
+	mov filehandle , eax
+	INVOKE WriteFile ,eax,ADDR customerNames,sizeof customerNames,NULL,NULL   
+	call writeint
+	mov eax , filehandle
+	INVOKE CloseHandle,eax
+	call crlf
+
+	
+
+	
+	INVOKE CreateFile ,ADDR filecnic,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
+	mov filehandle , eax
+	INVOKE WriteFile ,eax,ADDR customerCnic,sizeof customerCnic,NULL,NULL   
+	mov eax , filehandle
+	INVOKE CloseHandle,eax
+
+	INVOKE CreateFile ,ADDR fileticket,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
+	mov filehandle, eax
+	INVOKE WriteFile ,eax,ADDR tickets,sizeof tickets,NULL,NULL   
+	mov eax , filehandle
+	INVOKE CloseHandle,eax
+
+	pop eax
+	ret
+
+saveData ENDP
+
+
 end main
