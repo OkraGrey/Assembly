@@ -3,31 +3,32 @@ INCLUDE MACROS.INC
 .stack 4096
 .data
 
-ddata dword ?
-filename Byte "names.txt",0
-filecnic Byte "cnic.txt",0
-fileticket Byte "tickets.txt",0
+filefare Byte "fare.txt",0,0
+filehandle dword ?
 
-customerNames BYTE "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 400 dup(?)
-customerCnic BYTE "nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", 400 dup(0)
-tickets BYTE "ccccccccccccccccccccccccccccccccccccccccccccc", 5000 DUP(0)
-
-filehandle DWORD ?
-
+fares dword 20 dup(0)
+fair dword 150231
+lcw dword 0
 .code
 main Proc
 
-	INVOKE CreateFile ,ADDR filename,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
-	
-	INVOKE WriteFile ,eax,ADDR customerNames,sizeof customerNames,NULL,NULL   
-	
-	INVOKE CreateFile ,ADDR filecnic,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
-	INVOKE WriteFile ,eax,ADDR customerCnic,sizeof customerCnic,NULL,NULL   
-	
-	INVOKE CreateFile ,ADDR fileticket,GENERIC_WRITE,DO_NOT_SHARE,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0 
-	INVOKE WriteFile ,eax,ADDR tickets,sizeof tickets,NULL,NULL   
-	
+mov ecx , 20
+mov esi ,lcw
+l1:
 
+
+mov eax, fair
+inc eax
+mov fares[esi],eax
+
+	
+	call crlf
+	mov eax , fares[esi]
+	call writeint
+	call crlf
+	add lcw ,4
+	
+loop l1
 exit 
 main endp
 

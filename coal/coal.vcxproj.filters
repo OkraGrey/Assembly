@@ -38,5 +38,11 @@
     <Text Include="tickets.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="variable.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="fare.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
