@@ -4,7 +4,7 @@ INCLUDE MACROS.INC
 
 .data 
 ;-------------------------------------------------------------------------
-;Hasnain Sohail trying git hub
+
 t BYTE "AIRLINE TICKET MANAGEMENT SYSTEM",0
 explain BYTE "1-Customer details will be fetched 2 - Schedule will be displayed  3 - Fair generation 4 - Discount ",0
 portion1 BYTE "CUSTOMER DETAILS"
@@ -274,6 +274,8 @@ call loadData
 	call crlf
 	call crlf
 	call crlf
+
+
 	mwrite "	|---------------------------------------------|"
 	call crlf
 	mwrite "	|WELCOME TO AIRLINE TICKET MANAGEMENT SYSTEM  |"
@@ -282,8 +284,9 @@ call loadData
 	call crlf
 	call crlf
 	call crlf
-	mwrite "WHILE K ANDER NAI JA RHA"
+	;mwrite "WHILE K ANDER NAI JA RHA"
 	mov eax ,2
+		 
 .WHILE eax!=0 && loopHandling<20
 	mwrite "SELECT ANY OF THE FOLLOWING OPTION"
 	call crlf
@@ -315,6 +318,7 @@ addingcustomer :
 	CALL takeInput
 	inc loopHandling 
 	call saveData
+
 	jmp finish
 
 
@@ -1227,13 +1231,13 @@ listAll PROC
 	push edx
 	push eax
 	mov edx ,0
-	
+	mov lcw2,0
 	;mwrite "VALUE OF X"
 	;mov eax , x
 	;call writeint
 	;call crlf
 
-
+	
 	mov ecx , 20 ; total iterations can be 20
 	mov eax , x ; multiple of 20
 	div ecx
